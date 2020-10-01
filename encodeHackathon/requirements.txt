@@ -1,0 +1,7 @@
+requests
+azure-ai-textanalytics
+flask
+configparser
+oauth2
+tweepy
+uuid

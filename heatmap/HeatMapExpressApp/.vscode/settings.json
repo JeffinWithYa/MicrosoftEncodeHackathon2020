@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/de831a78-8f23-4165-883f-3d52f5bea2a1/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/teambbhackathonheatmap",
+    "appService.deploySubpath": "."
+}

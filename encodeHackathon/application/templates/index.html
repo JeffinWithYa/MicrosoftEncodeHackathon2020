@@ -1,0 +1,25 @@
+{% include "header.html" %}
+
+{% block body %}
+
+  <div class="container">
+    <h3>Community Outreacher</h3>
+    <p>Respond to the most pressing @'s and Tweets with reassuring receipts of action in your community.</p>
+    <br>
+     <form action="/analyze" method="post">
+          <div class="form-group">
+            <label for="number_of_tweets">How many tweets would you like to grab from the most recent?</label>
+            <input type="text" name="number_of_tweets">
+          </div>
+           <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" name="location">
+           </div>
+           <div class="form-group">
+            <label for="account">Twitter Account of Location</label>
+            <input type="text" name="account">
+           </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+{% endblock %}

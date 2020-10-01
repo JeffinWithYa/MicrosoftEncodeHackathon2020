@@ -1,0 +1,5 @@
+{% if (categories[category] | length) > 0 %}
+<span class="badge badge-success">{{categories[category] | length}}</span>
+{% else %}
+<span class="badge badge-light">{{categories[category] | length}}</span>
+{% endif %}

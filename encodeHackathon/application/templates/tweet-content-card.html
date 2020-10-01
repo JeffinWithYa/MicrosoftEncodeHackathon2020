@@ -1,0 +1,17 @@
+ {% for tweet in categories[category] %}
+    <div class="card">
+        <div class="card-body">
+            {% include "tweet-confidence-bar.html" %}
+            <br>
+            Key Phrases:
+            {% for key_phrase in tweet.key_phrases.key_phrases %}
+                    {{key_phrase}},
+            {% endfor %}
+        <br>
+        <blockquote class="twitter-tweet"><a href="https://twitter.com/x/status/{{tweet.tweet.id}}"></a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <button onclick="location.href='{{ url_for('sendalert', tweet_id=tweet.tweet.id) }}'" type="button"> Send Alert to Officer </button>
+        <button onclick="location.href='{{ url_for('createticket', username=tweet.user.username, tweet_id=tweet.tweet.id) }}'" type="button"> Create a Actionable Ticket and reply to tweet with Ticket Number </button>
+        </div>
+    </div>
+    <br>
+ {% endfor %}

@@ -1,0 +1,10 @@
+{% set percent = tweet.sentiment.confidence_scores.negative * 100 %}
+{% if percent >= 80 %}
+<div class="progress">
+  <div class="progress-bar bg-danger" role="progressbar" style="width: {{percent}}%" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100">Negativity score: {{percent|int}}</div>
+</div>
+{% else %}
+<div class="progress">
+  <div class="progress-bar bg-warning" role="progressbar" style="width: {{percent}}%" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100">Negativity score: {{percent|int}}</div>
+</div>
+{% endif %}

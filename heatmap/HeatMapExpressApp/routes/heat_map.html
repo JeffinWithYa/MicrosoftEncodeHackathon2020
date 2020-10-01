@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>311 Heatmap - View Your Issue in Realtime</title>
+
+    <meta charset="utf-8" />
+	<link rel="shortcut icon" href="/favicon.ico"/>
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="keywords" content="Microsoft maps, map, gis, API, SDK, heatmap, heat map, heatmaps, heat maps, density, layer, thermatic" />
+    <meta name="author" content="Microsoft Azure Maps" />
+
+    <!-- Add references to the Azure Maps Map control JavaScript and CSS files. -->
+    <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.css" type="text/css" />
+    <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.js"></script>
+
+    <script type='text/javascript'>
+        var map, datasource;
+
+        function GetMap() {
+            //Initialize a map instance.
+            map = new atlas.Map('myMap', {
+                view: 'Auto',
+                center: [-80.2482, 43.5448],
+                zoom: 11,
+
+		        //Add your Azure Maps key to the map SDK. Get an Azure Maps key at https://azure.com/maps. NOTE: The primary key should be used as the key.
+                authOptions: {
+                    authType: 'subscriptionKey',
+                    subscriptionKey: '8VWKUEd55O5hBTca3ltVQoClGEUiQCrsI05e7zFHlHY'
+                }
+            });
+
+            //Wait until the map resources are ready.
+            map.events.add('ready', function () {
+
+                //Create a data source and add it to the map.
+                datasource = new atlas.source.DataSource();
+                map.sources.add(datasource);
+
+                //Load a data set of points, in this case earthquake data from the USGS.
+                datasource.importDataFromUrl('https://raw.githubusercontent.com/JeffinWithYa/GeoJsonData/master/toronto_hotspots.geojson');
+
+                //Create a heatmap and add it to the map.
+                map.layers.add(new atlas.layer.HeatMapLayer(datasource, null, {
+                    radius: 10,
+                    opacity: 0.8
+                }), 'labels');
+            });
+        }
+    </script>
+</head>
+<body onload="GetMap()">
+    <div id="myMap" style="position:relative;width:100%;min-width:290px;height:600px;"></div>
+
+    <fieldset style="width:calc(100% - 30px);min-width:290px;margin-top:10px;">
+        <legend><h1 style="font-size:16px">Incidents Heat Map </h1></legend>
+        311 heatmap shows the location of your incident and similar incidents reported in your area. Thank you for contacting 311.
+    </fieldset>
+</body>
+</html>
